@@ -18,10 +18,8 @@ function run-isItAllowed {
     "
     
     write-host -ForegroundColor Green $logo
+    
     }
-    
-    
-    $SupportedWinVer = 2004
     
     function Get-AntiVirusProduct {
         [CmdletBinding()]
@@ -161,6 +159,8 @@ function run-isItAllowed {
     }
     
     # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    $SupportedWinVer = 2004
     
     print-TecharyLogo
     
