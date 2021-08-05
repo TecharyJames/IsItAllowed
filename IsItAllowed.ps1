@@ -111,7 +111,7 @@ function run-isItAllowed {
     
     function get-VulnerablePorts {
     
-        $HardFailPorts = @('21','22','80','23','25','53','110','443')
+        $HardFailPorts = @('21','22','80','23','25','53','110','443','3389')
     
         $OpenPorts = @(get-nettcpconnection -state listen).localPort
     
