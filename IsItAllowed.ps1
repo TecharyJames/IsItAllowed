@@ -179,7 +179,5 @@ function run-isItAllowed {
     write-host " "
     write-host "Current AV programs are: $av"
     write-host " "
-    
-    pause
-    
-    }
+
+}
