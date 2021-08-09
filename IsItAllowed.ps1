@@ -129,17 +129,17 @@ function run-isItAllowed {
         
     
             if ($script:FirewallHardfail -eq "True") {
-                write-host -ForegroundColor Red "At least one public/private/domain firewall is disalbed. Enable the firewall, OR confirm there is an antivirus product that is controlling the firewall instead."
+                write-host -ForegroundColor Red "`nAt least one public/private/domain firewall is disalbed. Enable the firewall, OR confirm there is an antivirus product that is controlling the firewall instead."
             }
     
     
     
             if ($script:AdminStatusHardfail -eq "True") {
-                write-host -ForegroundColor red "Current user account is an administrator. Remove the account from the administrators group, or create a new local account with no administrator permissions"
+                write-host -ForegroundColor red "`nCurrent user account is an administrator. Remove the account from the administrators group, or create a new local account with no administrator permissions"
             }
     
             if($script:VulnerablePortsHardFail -eq "True") {
-                write-host "Port(s) $Script:HardFailPortsOpen open. These are easily exploitable and need to be closed."
+                write-host -ForegroundColor Red "`nPort(s) $Script:HardFailPortsOpen open. These are easily exploitable and need to be closed."
             }
     
         }
