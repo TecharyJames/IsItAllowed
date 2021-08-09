@@ -1,8 +1,8 @@
+function run-isItAllowed {
+
 #####################################
 ## Author: James Tarran // Techary ##
 #####################################
-
-function run-isItAllowed {
 
     function print-TecharyLogo {
         
@@ -139,7 +139,7 @@ function run-isItAllowed {
             }
     
             if($script:VulnerablePortsHardFail -eq "True") {
-                write-host "$Script:HardFailPortsOpen are open. These are easily exploitable and need to be close."
+                write-host "Port(s) $Script:HardFailPortsOpen open. These are easily exploitable and need to be closed."
             }
     
         }
