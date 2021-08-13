@@ -105,7 +105,11 @@ function run-isItAllowed {
     
     function get-UserAdminStatus{
     
-        $script:AdminStatusHardfail = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+        $adminMemebers = (Get-LocalGroupMember -group administrators).name
+
+        if ($adminMemebers -like "*$env:username*") {$script:AdminStatusHardfail = "True"}
+        
+        else {$script:AdminStatusHardfail = "False"}
             
     }
     
@@ -135,7 +139,7 @@ function run-isItAllowed {
     
     
             if ($script:AdminStatusHardfail -eq "True") {
-                write-host -ForegroundColor red "`nCurrent user account is an administrator. Remove the account from the administrators group, or create a new local account with no administrator permissions"
+                write-host -ForegroundColor red "`nCurrent user account is a local administrator. Remove the account from the administrators group, or create a new local account with no administrator permissions"
             }
     
             if($script:VulnerablePortsHardFail -eq "True") {
@@ -176,8 +180,7 @@ function run-isItAllowed {
     
     Get-AllowStatus
     
-    write-host " "
-    write-host "Current AV programs are: $av"
+    write-host "`nCurrent AV programs are: $av"
     write-host " "
 
 }
