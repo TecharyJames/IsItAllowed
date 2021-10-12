@@ -7,15 +7,15 @@ function run-isItAllowed {
     function print-TecharyLogo {
         
         $logo = "
-         _______        _                      
-        |__   __|      | |                     
-           | | ___  ___| |__   __ _ _ __ _   _ 
-           | |/ _ \/ __| '_ \ / _`` | '__| | | |
-           | |  __/ (__| | | | (_| | |  | |_| |
-           |_|\___|\___|_| |_|\__,_|_|   \__, |
-                                          __/ |
-                                         |___/ 
-    "
+        _______        _                      
+       |__   __|      | |                     
+          | | ___  ___| |__   __ _ _ __ _   _ 
+          | |/ _ \/ __| '_ \ / _`` | '__| | | |
+          | |  __/ (__| | | | (_| | |  | |_| |
+          |_|\___|\___|_| |_|\__,_|_|   \__, |
+                                         __/ |
+                                        |___/ 
+   "
     
     write-host -ForegroundColor Green $logo
     
@@ -105,9 +105,9 @@ function run-isItAllowed {
     
     function get-UserAdminStatus{
     
-        $adminMemebers = (Get-LocalGroupMember -group administrators).name
+        $adminMembers = (Get-LocalGroupMember -group administrators).name
 
-        if ($adminMemebers -like "*$env:username*") {$script:AdminStatusHardfail = "True"}
+        if ($adminMembers -like "*$env:username*") {$script:AdminStatusHardfail = "True"}
         
         else {$script:AdminStatusHardfail = "False"}
             
@@ -133,10 +133,8 @@ function run-isItAllowed {
         
     
             if ($script:FirewallHardfail -eq "True") {
-                write-host -ForegroundColor Red "`nAt least one public/private/domain firewall is disalbed. Enable the firewall, OR confirm there is an antivirus product that is controlling the firewall instead."
+                write-host -ForegroundColor Red "`nAt least one public/private/domain firewall is disabled. Enable the firewall, OR confirm there is an antivirus product that is controlling the firewall instead."
             }
-    
-    
     
             if ($script:AdminStatusHardfail -eq "True") {
                 write-host -ForegroundColor red "`nCurrent user account is a local administrator. Remove the account from the administrators group, or create a new local account with no administrator permissions"
@@ -154,7 +152,7 @@ function run-isItAllowed {
         }
     
         if ($script:WindowsVersionSoftFail -eq "True") {
-            write-host -ForegroundColor Yellow "Windows is out of date. Please update to at least $SupportedWinVer"
+            write-host -ForegroundColor Yellow "`nWindows is out of date. Please update to at least $SupportedWinVer"
         }
     
 
