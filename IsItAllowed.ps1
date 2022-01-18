@@ -94,9 +94,9 @@ function run-isItAllowed {
     
     function get-windowsVersion {
     
-        $Script:version = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
+        $Script:version = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").DisplayVersion
     
-        if ($Script:version -ge $SupportedWinVer) {$script:WindowsVersionSoftFail = "False"}
+        if ($SupportedWinVer -contains $Script:version) {$script:WindowsVersionSoftFail = "False"}
         
         else {
             $script:WindowsVersionSoftFail = "True"
@@ -152,7 +152,8 @@ function run-isItAllowed {
         }
     
         if ($script:WindowsVersionSoftFail -eq "True") {
-            write-host -ForegroundColor Yellow "`nWindows is out of date. Please update to at least $SupportedWinVer"
+            write-host -ForegroundColor Yellow "`nWindows is out of date. Please update to any of the following versions:"
+            $SupportedWinVer
         }
     
 
@@ -162,7 +163,7 @@ function run-isItAllowed {
     
     # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    $SupportedWinVer = 2004
+    $SupportedWinVer = @("20H2","21H1","21H2")
     
     print-TecharyLogo
     
@@ -178,7 +179,7 @@ function run-isItAllowed {
     
     Get-AllowStatus
     
-    write-host "`nCurrent AV programs are: $av"
-    write-host " "
+    write-host "`nCurrent AV programs are:"
+    $av
 
 }
