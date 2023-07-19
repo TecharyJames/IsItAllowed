@@ -269,19 +269,20 @@ print-TecharyLogo
 
 $MajorOSEdition = get-majorOSEdition
 
-$script:SupportedWinVer = @()
-
 if ($MajorOSEdition -eq 11)
-{
+    {
 
-    $editionID = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').editionID
+        $editionID = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').editionID
 
-    $script:SupportedWinVer = (get-supportedwinver11).$editionID
+        $script:SupportedWinVer = (get-supportedwinver11).$editionID
 
-}
-else {
-$script:SupportedWinVer = get-supportedwinver10
-}
+    }
+else 
+    {
+
+        $script:SupportedWinVer = get-supportedwinver10
+        
+    }
 
 $av = @(Get-AntiVirusProduct).name
 
